@@ -1,21 +1,21 @@
 'use strict';
 var newValues = [];
 
-function numberList(number){
+function numberList(number) {
   var newNum = number;
   var list = [];
-  for(var i = newNum; i > 0; i = Math.floor(i/10)){
+  for(var i = newNum; i > 0; i = Math.floor(i/10)) {
     list.push(newNum % 10);
     newNum = Math.floor(newNum/10);
   }
   return list;
 }
 
-function editNum(num,index){
-  if (index%2 === 0){
+function editNum(num,index) {
+  if (index % 2 === 0) {
     var newNum = num * 2;
 
-    if (newNum > 9){
+    if (newNum > 9) {
       newNum -= 9;
     };
   }else{
@@ -24,24 +24,24 @@ function editNum(num,index){
   newValues.push(newNum);
 }
 
-function checkLuhn(number){
+function checkLuhn(number) {
   newValues = [];
   var lastNum = Number(number.toString().slice(-1));
-  var numMinusLast = Math.floor(number/10);
+  var numMinusLast = Math.floor(number / 10);
   var total = 0
   var numList = numberList(numMinusLast);
 
   numList.forEach(editNum);
 
-  newValues.forEach(function(num){
+  newValues.forEach(function(num) {
     total += num;
   });
 
   total += lastNum
-  console.log(newValues);
-  console.log(total);
+  //console.log(newValues);
+  //console.log(total);
 
-  if(total % 10 === 0){
+  if(total % 10 === 0) {
     return true;
   } else {
     return false;
@@ -50,9 +50,6 @@ function checkLuhn(number){
 
 }
 
-
-
-console.log(checkLuhn(79927398710))
-console.log(checkLuhn(79927398711))
-console.log(checkLuhn(4941151854614372))
-console.log(checkLuhn(4748189605577626))
+module.exports = {
+  testLuhn: checkLuhn
+}
