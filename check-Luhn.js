@@ -25,9 +25,12 @@ function editNum(num,index) {
 }
 
 function checkLuhn(number) {
+  if(isNaN(Number(number))){
+    return "Not a number!";
+  }
   newValues = [];
   var lastNum = Number(number.toString().slice(-1));
-  var numMinusLast = Math.floor(number / 10);
+  var numMinusLast = Math.floor(Number(number) / 10);
   var total = 0
   var numList = numberList(numMinusLast);
 
